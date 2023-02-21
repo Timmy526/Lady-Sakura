@@ -1,0 +1,32 @@
+from typing import Optional
+from discord import Embed
+from discord.ext import commands
+import random
+
+class rate(commands.Cog,
+          name = "Rate", 
+          description = "Rate Percentage"):
+
+  def __init__(self, client):
+    self.client = client
+
+  @commands.command()
+  async def rate(self, ctx, *, message: str):
+    
+    rate_amount = random.uniform(0.0, 100.0)
+
+    if message == '69':
+      rate_amount = 420
+    elif message == '420':
+      rate_amount = 69
+    else:
+      rate_amount = round(rate_amount, 2)
+    
+    str = f"{message} is {rate_amount}% cool! <a:catnodyes:1032028076030316664>"
+    
+    await ctx.send(str)
+
+async def setup(client):
+  await client.add_cog(rate(client))
+
+

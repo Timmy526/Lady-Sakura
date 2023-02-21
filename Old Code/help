@@ -1,0 +1,46 @@
+from discord.ext import commands
+from discord import Embed
+
+class help(commands.Cog):
+
+  def __init__(self, client):
+    self.client = client
+
+  @commands.command()
+  async def help(self, ctx):
+    embed = Embed(
+      title = "Help Commands",
+      colour = 	0xffb7c5,
+    )
+
+    fun = []
+    miscellaneous = ['botinfo', 'ping']
+    moderation = []
+    utilities = ['info']
+    owner = ['say', 'rolemembers']
+
+    embed.add_field(
+      name = "Fun",
+      value = (", ".join(str(i) for i in moderation))
+    )
+    
+    embed.add_field(
+      name = "Moderation",
+      value = (", ".join(str(i) for i in moderation))
+    )
+    
+    embed.add_field(
+      name = "Miscellaneous",
+      value = (", ".join(str(i) for i in miscellaneous))
+    )
+
+    embed.add_field(
+      name = "Utilities",
+      value = (", ".join(str(i) for i in moderation))
+    )
+   
+    await ctx.message.delete()
+    await ctx.send(embed=embed)
+
+async def setup(client):
+  await client.add_cog(help(client))

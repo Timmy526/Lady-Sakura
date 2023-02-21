@@ -1,0 +1,13 @@
+embed = Embed(
+      title = f"Welcome {target} to Sakura Sanctuary!",
+      colour = 	0xffb7c5,
+      description = "I hope you enjoy your stay!\n Please read <#1058274286575571014>\n Grab some <#1058274342682771466>\n Introduce yourself in <#1058274427529334804>"
+    )
+    embed.set_thumbnail(url=target.display_avatar)
+    embed.set_image(url="https://media0.giphy.com/media/NKicvKt6iisXS/giphy.gif?cid=ecf05e477wjyfhss2829re983x9vmay0apw0cohllk3x6pwd&rid=giphy.gif&ct=g")
+    embed.set_footer(text=f"You are member #{len(ctx.guild.members)}!")
+    embed.timestamp = datetime.utcnow()
+
+    
+    await ctx.message.delete()
+    await ctx.send(embed=embed)

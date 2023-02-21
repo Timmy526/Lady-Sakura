@@ -1,0 +1,18 @@
+from discord.ext import commands
+
+
+class allstar(commands.Cog,
+          name = "All Star", 
+          description = "This should be self explanatory"):
+
+  def __init__(self, client):
+    self.client = client
+
+  @commands.command()
+  async def allstar(self, ctx):
+    #target = target or ctx.author
+    await ctx.send("Hey now, you're an all-star, get your game on, go play \nHey now, you're a rock star, get the show on, get paid \nAnd all that glitters is gold \nOnly shooting stars break the mold \n")
+
+
+async def setup(client):
+  await client.add_cog(allstar(client))

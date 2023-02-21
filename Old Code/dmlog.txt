@@ -1,0 +1,23 @@
+If the member dms the bot, log it
+
+@commands.Cog.listener()
+async def on_message(self, message: discord.Message):
+		try:
+				if message.channel.type == discord.ChannelType.private:
+						if message.author.bot:
+								return
+						guild = self.client.get_guild(YOUR_SERVER_ID)
+						logs = guild.get_channel(MAKE_A_DM_LOG_CHANNEL_PASTE_ID_HERE)
+						embed = discord.Embed(
+								color=self.yellow,
+								title='Bot DM Received',
+								description=f"```\n{message.content}\n```"
+						)
+						embed.set_author(name=message.author, icon_url=message.author.avatar.url)
+						if len(message.attachments) > 0:
+								urls = []
+								for attachment in message.attachments:
+										urls.append(attachment.url)
+								embed.add_field(name="Attachments", value="\n".join(urls), inline=False)
+						await logs.send(embed=embed)
+						return

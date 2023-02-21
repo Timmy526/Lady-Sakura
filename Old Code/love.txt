@@ -1,0 +1,48 @@
+from typing import Optional
+from discord import Embed, Member
+from discord.ext import commands
+import random
+
+class love(commands.Cog,
+          name = "Love", 
+          description = "Love Calculator"):
+
+  def __init__(self, client):
+    self.client = client
+
+  @commands.command()
+  async def love(self, ctx, target: Optional[Member]):
+    target = target or ctx.author
+    if target == self.client.user:
+      return await ctx.send("Get your hands off me.")
+    random.seed(ctx.author.display_avatar.url + target.display_avatar.url + "69")
+    r = random.randint(1,100)
+    rand = r / 1.17
+    str = f"{ctx.author.mention}'s love for {target.mention} is {round(rand, 2)}%.\n "
+    
+    if rand == 0:
+      str += "Give up right now... "
+    elif rand < 10:
+      str += "Better go get a pet or something else to love"
+    elif rand < 20:
+      str += "I think you need a hug because this ain't going to happen bud"
+    elif rand < 30: 
+      str += f"I think {target.mention} is better off with me instead..."
+    elif rand < 40: 
+      str += "Seems like you are just friends... Keep it that way"
+    elif rand < 50: 
+      str += "Hey, there might be a chance if you get some rizz"
+    elif rand < 60: 
+      str += "You are close, but just not there... Maybe try being more cool... IDK"
+    elif rand < 70: 
+      str += "You are doing good, but you are somehow still blowing it...  **TRY HARDER**"
+    elif rand < 80: 
+      str += "Give it a few months, maybe you will win their love"
+    elif rand < 90: 
+      str += "This is pretty high... I hope you get both enjoy being in love!"
+    elif rand < 100: 
+      str += "What are you waiting for!?! You should both get married right now!"
+   
+    await ctx.send(str)
+async def setup(client):
+  await client.add_cog(love(client))

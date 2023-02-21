@@ -1,0 +1,21 @@
+from discord import Embed
+from discord.ext import commands
+import random
+
+class reverse(commands.Cog,
+          name = "Reversed", 
+          description = "Reverse the message"):
+
+  def __init__(self, client):
+    self.client = client
+
+  @commands.command()
+  async def reverse(self, ctx, *, message: str):
+    
+    t_rev = message[::-1].replace("@", "@\u200B").replace("&", "&\u200B")
+    await ctx.send(f"🔁 {t_rev}")
+
+async def setup(client):
+  await client.add_cog(reverse(client))
+
+
